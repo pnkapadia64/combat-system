@@ -11,9 +11,10 @@ public enum WeaponType
 
 public class WeaponAttributes
 {
+    public string name;
     public float speed;
     public float range;
-    public float damage;
+    public int damage;
 }
 
 public class WeaponInventory
@@ -34,9 +35,9 @@ public class WeaponInventory
 
     public WeaponInventory()
     {
-        weapons[WeaponType.WEAPON_1] = new WeaponAttributes { speed = 1f, range = 2f, damage = 3 };
-        weapons[WeaponType.WEAPON_2] = new WeaponAttributes { speed = 5f, range = 5f, damage = 2 };
-        weapons[WeaponType.WEAPON_3] = new WeaponAttributes { speed = 10f, range = 10f, damage = 1 };
+        weapons[WeaponType.WEAPON_1] = new WeaponAttributes { name = "Weapon X", speed = 3f, range = 2f, damage = 15 };
+        weapons[WeaponType.WEAPON_2] = new WeaponAttributes { name = "Weapon Y", speed = 5f, range = 5f, damage = 10 };
+        weapons[WeaponType.WEAPON_3] = new WeaponAttributes { name = "Weapon Z", speed = 10f, range = 10f, damage = 5 };
     }
 
     public WeaponAttributes GetWeaponAttributes(WeaponType weaponType)

@@ -17,7 +17,7 @@ public class WeaponChooser : MonoBehaviour
         {
             WeaponType weapon = weaponNames[i];
             GameObject newButton = Instantiate(buttonPrefab, gameObject.transform);
-            newButton.GetComponentInChildren<TextMeshProUGUI>().text = weapon.ToString();
+            newButton.GetComponentInChildren<TextMeshProUGUI>().text = WeaponInventory.GetInstance().GetWeaponAttributes(weapon).name;
             newButton.GetComponent<Button>().onClick.AddListener(() => {
                 GameManager.Instance.SelectWeaponForGame(weapon);
             });

@@ -4,22 +4,33 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
+    public WeaponType weaponType;
+
     public float speed = 10f;
+    private float range = 5f;
 
     private bool keepMoving = true;
+    private Vector3 originPos;
 
     private void Start()
     {
-        WeaponType currentWeapon = GameManager.Instance.weaponChosen;
-        WeaponAttributes currentWeaponAttr = WeaponInventory.GetInstance().GetWeaponAttributes(currentWeapon);
+        weaponType = GameManager.Instance.weaponChosen;
+        WeaponAttributes currentWeaponAttr = WeaponInventory.GetInstance().GetWeaponAttributes(weaponType);
         if (currentWeaponAttr != null)
         {
             speed = currentWeaponAttr.speed;
+            range = currentWeaponAttr.range;
         }
+        originPos = transform.position;
     }
 
     void FixedUpdate()
     {
+        if (Vector3.Distance(originPos, transform.position) > range)
+        {
+            //Debug.Log("Out of range bullet");
+            Destroy(gameObject);
+        }
         if (keepMoving)
         {
             transform.position += transform.forward * speed * Time.deltaTime;

@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        health = Random.Range(1, 4);
+        health = Random.Range(50, 100);
         healthUI.text = health.ToString();
     }
 
@@ -21,18 +21,20 @@ public class PlayerHealth : MonoBehaviour
         return health > 0;
     }
 
-    public void getHit()
+    public void getHit(int damage)
     {
-        health -= 1;
+        health -= damage;
         healthUI.text = health.ToString();
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("has collision " + collision.gameObject.tag);
         if (collision.gameObject.tag == "Bullet")
         {
-            getHit();
+            WeaponType bulletWeaponType = collision.gameObject.GetComponent<BulletMovement>().weaponType;
+            Debug.Log("has collision " + collision.gameObject.tag + bulletWeaponType);
+            int damageFromBullet = WeaponInventory.GetInstance().GetWeaponAttributes(bulletWeaponType).damage;
+            getHit(damageFromBullet);
         }
     }
 }
