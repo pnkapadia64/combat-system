@@ -8,6 +8,16 @@ public class BulletMovement : MonoBehaviour
 
     private bool keepMoving = true;
 
+    private void Start()
+    {
+        WeaponType currentWeapon = GameManager.Instance.weaponChosen;
+        WeaponAttributes currentWeaponAttr = WeaponInventory.GetInstance().GetWeaponAttributes(currentWeapon);
+        if (currentWeaponAttr != null)
+        {
+            speed = currentWeaponAttr.speed;
+        }
+    }
+
     void FixedUpdate()
     {
         if (keepMoving)

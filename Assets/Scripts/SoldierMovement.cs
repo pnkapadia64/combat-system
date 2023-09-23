@@ -20,11 +20,6 @@ public class SoldierMovement : MonoBehaviour
 
     public GameObject CinemachineCameraTarget;
 
-    private void Start()
-    {
-        Debug.Log("player start==" + GameManager.Instance.GetBulletStr());
-    }
-
     private void FixedUpdate()
     {
         transform.Translate(moveVec * speed * Time.deltaTime);

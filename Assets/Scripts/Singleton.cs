@@ -21,10 +21,4 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
             DontDestroyOnLoad(gameObject);
         }
     }
-
-    //protected virtual void OnDestroy()
-    //{
-    //    if (Instance == this)
-    //        Instance = null;
-    //}
 }

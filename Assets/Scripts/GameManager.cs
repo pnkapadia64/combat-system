@@ -5,29 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public int bulletChosen = 0;
+    public WeaponType weaponChosen;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-               
+        base.Awake();
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetBulletStr()
     {
-        
+        return weaponChosen.ToString();
     }
 
-    public void OnChooseBullet(int bullet)
+    public List<WeaponType> GetAllWeaponNames()
     {
-        bulletChosen = bullet;
-        Debug.Log("bullet chosen " + bullet);
+        //Debug.Log("[GM] get all ");
+        return WeaponInventory.GetInstance().GetAll();
+    }
+
+    public void SelectWeaponForGame(WeaponType weapon)
+    {
+        weaponChosen = weapon;
+        //Debug.Log("weapon chosen " + weapon);
         SceneManager.LoadScene("MainScene");
-    }
-
-    public int GetBulletStr()
-    {
-        return bulletChosen * 5;
     }
 }
