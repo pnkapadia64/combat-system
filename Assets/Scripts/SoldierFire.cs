@@ -8,34 +8,28 @@ public class SoldierFire : MonoBehaviour
     [SerializeField]
     private GameObject bulletPrefab;
 
-    private Transform bulletPosition;
-
-    private CustomInput input;
+    [SerializeField]
+    private GameObject bulletPos;
 
     private void Start()
     {
-        bulletPosition = transform;
     }
 
-    void Awake()
-    {
-        input = new CustomInput();
-    }
+    //private void OnEnable()
+    //{
+    //    input.Enable();
+    //    input.Player.Fire.performed += OnFire;
+    //}
 
-    private void OnEnable()
-    {
-        input.Enable();
-        input.Player.Fire.performed += OnFire;
-    }
+    //private void OnDisable()
+    //{
+    //    input.Disable();
+    //    input.Player.Fire.performed -= OnFire;
+    //}
 
-    private void OnDisable()
+    public void OnFire(InputValue _value)
     {
-        input.Disable();
-        input.Player.Fire.performed -= OnFire;
-    }
-
-    private void OnFire(InputAction.CallbackContext val)
-    {
+        Transform bulletPosition = bulletPos.transform;
         Instantiate(bulletPrefab, bulletPosition.position, bulletPosition.rotation);
     }
 }
