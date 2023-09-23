@@ -14,6 +14,11 @@ public class SoldierMovement : MonoBehaviour
         input = new CustomInput();
     }
 
+    private void Start()
+    {
+        Debug.Log("player start==" + GameManager.Instance.GetBulletStr());
+    }
+
     private void FixedUpdate()
     {
         transform.Translate(moveVec * speed * Time.deltaTime);
