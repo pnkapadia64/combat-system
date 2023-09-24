@@ -12,21 +12,15 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
     }
 
-    public string GetBulletStr()
-    {
-        return weaponChosen.ToString();
-    }
-
+    // UI
     public List<WeaponType> GetAllWeaponNames()
     {
-        //Debug.Log("[GM] get all ");
         return WeaponInventory.GetInstance().GetAll();
     }
-
+    // UI
     public void SelectWeaponForGame(WeaponType weapon)
     {
         weaponChosen = weapon;
-        //Debug.Log("weapon chosen " + weapon);
         SceneManager.LoadScene("MainScene");
     }
 }

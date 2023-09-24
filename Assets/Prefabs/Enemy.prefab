@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 5003817813048418001}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1206,6 +1206,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8442623690604717372}
     m_Modifications:
+    - target: {fileID: 83556025070945200, guid: 758b9a12606ce4ece9f085efda0d6e79, type: 3}
+      propertyPath: m_text
+      value: '-'
+      objectReference: {fileID: 0}
     - target: {fileID: 373199634312025192, guid: 758b9a12606ce4ece9f085efda0d6e79, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1272,11 +1276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 373199634312025192, guid: 758b9a12606ce4ece9f085efda0d6e79, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.426
+      value: 0.024
       objectReference: {fileID: 0}
     - target: {fileID: 373199634312025192, guid: 758b9a12606ce4ece9f085efda0d6e79, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.534
+      value: 1.833
       objectReference: {fileID: 0}
     - target: {fileID: 373199634312025192, guid: 758b9a12606ce4ece9f085efda0d6e79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

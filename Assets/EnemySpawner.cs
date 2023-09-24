@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : Singleton<EnemySpawner>
 {
     [SerializeField]
     public GameObject enemyPrefab;
     [SerializeField]
     public Transform[] enemyPos;
 
-    void Start()
+    public List<GameObject> SpawnEnemies()
     {
-        StartCoroutine(SpawnEnemies());
-    }
+        List<GameObject> allEnemies = new List<GameObject>();
 
-    IEnumerator SpawnEnemies()
-    {
         for (int i = 0; i < enemyPos.Length; i++)
         {
             Transform pos = enemyPos[i];
-            Instantiate(enemyPrefab, pos.position, Quaternion.identity);
-            yield return new WaitForSeconds(3 + 1);
+            var enemy = Instantiate(enemyPrefab, pos.position, Quaternion.identity);
+            enemy.name = "Enemy" + i;
+            allEnemies.Add(enemy);
         }
+        return allEnemies;
     }
 }

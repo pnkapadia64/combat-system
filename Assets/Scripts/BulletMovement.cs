@@ -7,10 +7,11 @@ public class BulletMovement : MonoBehaviour
     public WeaponType weaponType;
 
     public float speed = 10f;
-    private float range = 5f;
+    protected float range = 5f;
+    public int damage = 1;
 
     private bool keepMoving = true;
-    private Vector3 originPos;
+    protected Vector3 originPos;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class BulletMovement : MonoBehaviour
         {
             speed = currentWeaponAttr.speed;
             range = currentWeaponAttr.range;
+            damage = currentWeaponAttr.damage;
         }
         originPos = transform.position;
     }
@@ -40,5 +42,6 @@ public class BulletMovement : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         keepMoving = false;
+        Destroy(gameObject);
     }
 }

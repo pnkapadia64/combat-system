@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
-    protected override int getBulletDamage(Collision _collision)
-    {
-        int damageFromBullet = WeaponInventory.GetInstance().GetEnemyWeaponAttributes().damage;
-        return damageFromBullet;
-    }
+    //protected override int getBulletDamage(Collision _collision)
+    //{
+    //    int damageFromBullet = WeaponInventory.GetInstance().GetEnemyWeaponAttributes().damage;
+    //    return damageFromBullet;
+    //}
 }

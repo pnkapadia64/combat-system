@@ -12,31 +12,51 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private GameObject bulletPos;
 
-    private GameObject player;
+    private GameObject playerToShoot;
     private NavMeshAgent navMeshAgent;
     private float bulletRange;
 
     private bool shouldFire = false;
     private bool isPlayerClose = false;
 
+    private IEnumerator fireCoroutine;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-        //Debug.Log("=enemies??" + player);
         navMeshAgent.speed = Random.Range(.5f, 2f);
         bulletRange = WeaponInventory.GetInstance().GetEnemyWeaponAttributes().range;
+        playerToShoot = GetRandomEnemy();
+        Debug.Log("= enemey AI=" + gameObject.name + "=shooting=" + playerToShoot.name);
+
+        fireCoroutine = FireAnother();
+        StartCoroutine(FollowEnemy());
+    }
+
+    private GameObject GetRandomEnemy()
+    {
+        return PlayerManager.Instance.GetRandomEnemyFor(gameObject);
     }
 
     void Update()
     {
-        Vector3 enemyPos = player.transform.position;
+        if (!playerToShoot || !gameObject.GetComponent<Health>().isAlive())
+        {
+            StopAllCoroutines();
+            return;
+        }
+
+        Vector3 enemyPos = playerToShoot.transform.position;
         bool isClose = Vector3.Distance(enemyPos, transform.position) <= bulletRange;
 
-        //Debug.Log("enemy pos?" + bulletRange + "=dis=" +Vector3.Distance(enemyPos, transform.position));
+        if (!isClose)
+        {
+            StopCoroutine(fireCoroutine);
+        }
+        // Fire if close enough to enemy
         if (isClose && !this.isPlayerClose)
         {
-            shouldFire = true;
+            StartCoroutine(fireCoroutine);
         }
         this.isPlayerClose = isClose;
         if (isClose)
@@ -48,10 +68,32 @@ public class EnemyAI : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.2f);
             Fire();
         }
-        else
+        
+    }
+
+    private bool isEnemyAlive(GameObject pl)
+    {
+        return pl.GetComponent<Health>().isAlive();
+    }
+
+    IEnumerator FollowEnemy()
+    {
+        while (true)
         {
-            //Debug.Log("enemy not close");
-            navMeshAgent.SetDestination(player.transform.position);
+            bool isPlayerAlive = isEnemyAlive(playerToShoot);
+            //Debug.Log(gameObject.name + " following enemy " + playerToShoot.name + isPlayerAlive + "-" + this.isPlayerClose);
+            if (!isPlayerAlive)
+            {
+                // Find a new enemy
+                playerToShoot = GetRandomEnemy();
+                //Debug.Log("=finding new enemy for=" + gameObject.name + "-got-" + playerToShoot.name);
+            }
+            else if (!this.isPlayerClose)
+            {
+                navMeshAgent.SetDestination(playerToShoot.transform.position);
+            }
+
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -59,10 +101,19 @@ public class EnemyAI : MonoBehaviour
     {
         if (shouldFire)
         {
-            Debug.Log("firing from enemy");
+            //Debug.Log("firing from enemy " + gameObject.name);
             Transform bulletPosition = bulletPos.transform;
             Instantiate(bulletPrefab, bulletPosition.position, bulletPosition.rotation);
             shouldFire = false;
+        }
+    }
+
+    IEnumerator FireAnother()
+    {
+        while (true)
+        {
+            shouldFire = true;
+            yield return new WaitForSeconds(2f);
         }
     }
 }
