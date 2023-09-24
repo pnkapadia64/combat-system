@@ -9,8 +9,6 @@ public class SoldierMovement : MonoBehaviour
     private Vector3 moveVec = Vector3.zero;
     private float speed = 5.0f;
 
-    private const float _threshold = 0.01f;
-    private float RotationSpeed = 1.0f;
     private float _cinemachineTargetPitch;
     private float _rotationVelocity;
     [Tooltip("How far in degrees can you move the camera up")]

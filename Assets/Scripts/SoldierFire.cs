@@ -13,7 +13,10 @@ public class SoldierFire : MonoBehaviour
 
     public void OnFire(InputValue _value)
     {
-        Transform bulletPosition = bulletPos.transform;
-        Instantiate(bulletPrefab, bulletPosition.position, bulletPosition.rotation);
+        if (gameObject.GetComponent<Health>().isAlive())
+        {
+            Transform bulletPosition = bulletPos.transform;
+            Instantiate(bulletPrefab, bulletPosition.position, bulletPosition.rotation);
+        }
     }
 }

@@ -12,7 +12,6 @@ public class WeaponChooser : MonoBehaviour
     void Start()
     {
         List<WeaponType> weaponNames = GameManager.Instance.GetAllWeaponNames();
-        //Debug.Log("[w-chooser] " + weaponNames);
         for (int i=0; i< weaponNames.Count; i++ )
         {
             WeaponType weapon = weaponNames[i];

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Weapon Manager for main player
 public class GameManager : Singleton<GameManager>
 {
     public WeaponType weaponChosen;
@@ -12,12 +13,11 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
     }
 
-    // UI
     public List<WeaponType> GetAllWeaponNames()
     {
         return WeaponInventory.GetInstance().GetAll();
     }
-    // UI
+
     public void SelectWeaponForGame(WeaponType weapon)
     {
         weaponChosen = weapon;

@@ -51,7 +51,6 @@ public class WeaponInventory
 
     public List<WeaponType> GetAll()
     {
-        //Debug.Log("[w-inv] get all");
         return new List<WeaponType>(weapons.Keys);
     }
 

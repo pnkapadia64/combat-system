@@ -20,15 +20,11 @@ public class PlayerManager : Singleton<PlayerManager>
         UpdateUI();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateUI();    
-    }
-
     public void OnPlayerDeath(GameObject player)
     {
+        Debug.Log("On player death =" + player.name);
         alivePlayers.Remove(player);
+        UpdateUI();
     }
 
     // Get random target enemy
@@ -36,6 +32,10 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         List<GameObject> aliveEnemiesForPlayer = new List<GameObject>(alivePlayers);
         aliveEnemiesForPlayer.Remove(player);
+        if (aliveEnemiesForPlayer.Count == 0)
+        {
+            return null;
+        }
         int randomIndex = Random.Range(0, aliveEnemiesForPlayer.Count);
 
         return randomIndex > -1 ? aliveEnemiesForPlayer[randomIndex] : null;

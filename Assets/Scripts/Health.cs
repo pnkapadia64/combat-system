@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
             health -= damage;
             healthUI.text = getHealthText();
         }
-        if (health == 0)
+        if (health <= 0)
         {
             PlayerManager.Instance.OnPlayerDeath(gameObject);
         }
@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
     protected virtual int getBulletDamage(Collision collision)
     {
         int damageFromBullet = collision.gameObject.GetComponent<BulletMovement>().damage;
-        Debug.Log("has collision " + gameObject.name + damageFromBullet);
+        //Debug.Log("has collision " + gameObject.name + damageFromBullet);
         return damageFromBullet;
     }
 

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,7 +26,7 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.speed = Random.Range(.5f, 2f);
         bulletRange = WeaponInventory.GetInstance().GetEnemyWeaponAttributes().range;
         playerToShoot = GetRandomEnemy();
-        Debug.Log("= enemey AI=" + gameObject.name + "=shooting=" + playerToShoot.name);
+        Debug.Log("Enemy AI=" + gameObject.name + " shooting " + playerToShoot.name);
 
         fireCoroutine = FireAnother();
         StartCoroutine(FollowEnemy());
