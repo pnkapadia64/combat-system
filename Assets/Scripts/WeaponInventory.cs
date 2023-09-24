@@ -55,4 +55,8 @@ public class WeaponInventory
         return new List<WeaponType>(weapons.Keys);
     }
 
+    public WeaponAttributes GetEnemyWeaponAttributes()
+    {
+        return new WeaponAttributes { name = "Enemy Weapon", speed = 3.5f, range = 5f, damage = 5 };
+    }
 }

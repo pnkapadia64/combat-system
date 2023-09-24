@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
         {
             Transform pos = enemyPos[i];
             Instantiate(enemyPrefab, pos.position, Quaternion.identity);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3 + 1);
         }
     }
 }

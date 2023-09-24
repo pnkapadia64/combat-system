@@ -1040,9 +1040,9 @@ GameObject:
   - component: {fileID: 8442623690597485434}
   - component: {fileID: 1813254187743357027}
   - component: {fileID: 8906544889607299332}
-  - component: {fileID: 3383723467239449460}
   - component: {fileID: 7055355527605801773}
   - component: {fileID: 202816465355415047}
+  - component: {fileID: 5003817813048418001}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1119,19 +1119,6 @@ CapsuleCollider:
   m_Height: 1.679806
   m_Direction: 1
   m_Center: {x: -0.009892762, y: 0.8311151, z: 0}
---- !u!114 &3383723467239449460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8442623690604886364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6041f3d59c7345d5a814bb0485be13d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthUI: {fileID: 2293245833358424796}
 --- !u!195 &7055355527605801773
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1166,6 +1153,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5d470c644984b6cbe870d72bc3c7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1574422576632934731, guid: bd129bebef8eb4c3d8179e6a820a6cd2, type: 3}
+  bulletPos: {fileID: 2769816751929050897}
+--- !u!114 &5003817813048418001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442623690604886364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89d3d14bff084be1a2617a5ef655af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthUI: {fileID: 2293245833358424796}
 --- !u!1 &8442623690604886366
 GameObject:
   m_ObjectHideFlags: 0
